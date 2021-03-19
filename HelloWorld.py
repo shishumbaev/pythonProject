@@ -13,7 +13,7 @@ def create(parent, namesp):
     dict1[str(namesp)] = [str(parent)]
     dict2[str(parent)] = []
 
-
+s
 def get(namesp, arg, z=dict2):
 
     s = 0
