@@ -1,25 +1,27 @@
-dict1 = {'None': 'global', 'global': ['first'], 'first': ['second'], 'second': ['third']}
-dict2 = {'global': [], 'first': ['my_var'], 'second': [], 'third': ['q']}
+dict1 = {'None': ['global'], 'global': ['first'], 'first': ['second'], 'second': ['third']}
+dict2 = {'global': [], 'first': ['my_var'], 'second': [], 'third': []}
 
 
 
 def get(namesp, arg, z=dict2):
-
     s = 0
     d = 0
-    for i in z.keys():
-        for j in z[i]:
-            if arg == namesp:
-                return namesp
-            if namesp == i:
-                d = i
-            if arg == j:
-                s = i
+    for i, j in z.items():
+        if j == [] and i == namesp:
+            d = i
+        else:
+            for j in z[i]:
+                if arg == namesp:
+                    return namesp
                 if namesp == i:
-                    return s
+                    d = i
+                if arg == j:
+                    s = i
+                    if namesp == i:
+                        return s
 
-            if s !=0 and d !=0:
-                return get(s, rec(s,d), z=dict1)
+        if s != 0 and d != 0:
+            return get(s, rec(s, d), z=dict1)
 
 def rec(s, d):
     for i in dict1.keys():
