@@ -21,7 +21,8 @@ def get(namesp, arg, z=dict2):
     for i, j in z.items():
         if j == [] and i == namesp:
             d = i
-
+            if s != 0 and d != 0:
+                return rec(s, d)
         else:
             for i in z.keys():
                 for j in z[i]:
@@ -40,16 +41,22 @@ def get(namesp, arg, z=dict2):
                         return rec(s, d)
 
 
-def rec(s, d):
+def rec(d, s):
     for i, j in dict1.items():
         for j in dict1[i]:
-            if i == s and d == j:
+            if i == d and s == j:
+                return d
+            if i == s and j == d:
                 return s
             if s == d:
                 return d
-            if d == j:
-                d = i
-                return rec(s,d)
+            if s == j:
+                if d == i:
+                    s = i
+                    return rec(d,s)
+                else:
+                    s = i
+                    return rec(d, s)
 
 
 
