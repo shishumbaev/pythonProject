@@ -18,30 +18,28 @@ def create(parent, namesp):
 def get(namesp, arg, z=dict2):
     s = 0
     d = 0
-    for i, j in z.items():
-        if j == [] and i == namesp:
+    for i in z.keys():
+        if i == namesp:
             d = i
             if s != 0 and d != 0:
-                return rec(s, d)
+                if rec(s, d) != None:
+                    return rec(s, d)
         else:
             for i in z.keys():
+                if namesp == i:
+                    d = i
                 for j in z[i]:
                     if i == j:
                         return namesp
-                    if namesp == i:
-                        d = i
-                        if arg == j:
-                            s = i
-                            if namesp == i:
-                                return s
                     if arg == j:
                         s = i
-                    if s != 0 and d != 0:
-
-                        return rec(s, d)
+                        if s != 0 and d != 0:
+                            if rec(s,d) != None:
+                                return rec(s,d)
 
 
 def rec(d, s):
+
     for i, j in dict1.items():
         for j in dict1[i]:
             if i == d and s == j:
@@ -50,13 +48,16 @@ def rec(d, s):
                 return s
             if s == d:
                 return d
+            if s == 'global':
+                return rec(s,d)
+            if d == 'global':
+                if s == j:
+                    return d
             if s == j:
                 if d == i:
                     s = i
                     return rec(d,s)
-                else:
-                    s = i
-                    return rec(d, s)
+
 
 
 
