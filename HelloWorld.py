@@ -39,7 +39,6 @@ def get(namesp, arg, z=dict2):
 
 
 def rec(d, s):
-
     for i, j in dict1.items():
         for j in dict1[i]:
             if i == d and s == j:
@@ -55,6 +54,9 @@ def rec(d, s):
                     return d
             if s == j:
                 if d == i:
+                    s = i
+                    return rec(d,s)
+                else:                               #либо www rrr, либо my_var
                     s = i
                     return rec(d,s)
 
