@@ -15,50 +15,30 @@ def create(parent, namesp):
         dict2[str(parent)] = []
 
 
-def get(namesp, arg, z=dict2):
-    s = 0
-    d = 0
-    for i in z.keys():
-        if i == namesp:
-            d = i
-            if s != 0 and d != 0:
-                if rec(s, d) != None:
-                    return rec(s, d)
-        else:
-            for i in z.keys():
-                if namesp == i:
-                    d = i
-                for j in z[i]:
-                    if i == j:
-                        return namesp
-                    if arg == j:
-                        s = i
-                        if s != 0 and d != 0:
-                            if rec(s,d) != None:
-                                return rec(s,d)
+def get(namesp, arg):
+    for i in dict2.keys():
+        for j in dict2[i]:
+            if i == namesp:
+                if j == arg:
+                    return namesp
+                else:
+                    for i in dict1.keys():
+                        for j in dict1[i]:
+                            if j == namesp:
+                                namesp = i
+
+                                return get(namesp, arg)
 
 
-def rec(d, s):
-    for i, j in dict1.items():
-        for j in dict1[i]:
-            if i == d and s == j:
-                return d
-            if i == s and j == d:
-                return s
-            if s == d:
-                return d
-            if s == 'global':
-                return rec(s,d)
-            if d == 'global':
-                if s == j:
-                    return d
-            if s == j:
-                if d == i:
-                    s = i
-                    return rec(d,s)
-                else:                               #либо www rrr, либо my_var
-                    s = i
-                    return rec(d,s)
+
+
+
+
+
+
+
+
+
 
 
 
