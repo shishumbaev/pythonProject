@@ -16,30 +16,19 @@ def create(parent, namesp):
 
 
 def get(namesp, arg):
+    parent = 0
     for i in dict2.keys():
-        for j in dict2[i]:
-            if i == namesp:
-                if j == arg:
-                    return namesp
-                else:
-                    for i in dict1.keys():
-                        for j in dict1[i]:
-                            if j == namesp:
-                                namesp = i
+        if i == namesp:
+            parent = namesp
+            for j in dict2[i]:
+                if arg == j:
+                    return parent
 
-                                return get(namesp, arg)
-
-
-
-
-
-
-
-
-
-
-
-
+            for i in dict1.keys():
+                for j in dict1[i]:
+                    if j == parent:
+                        parent = i
+                        return get(parent, arg)
 
 
 
