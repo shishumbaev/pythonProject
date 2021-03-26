@@ -1,6 +1,6 @@
 n = int(input())
 
-dict1 = {'None':['global']}
+dict1 = {None : ['global']}
 dict2 = {'global': []}
 def add(namesp, arg):
     if len(arg) <= 10:
@@ -11,13 +11,17 @@ def add(namesp, arg):
 
 def create(parent, namesp):
     if len(namesp) and len(parent)<=10:
-        dict1[str(namesp)] = [str(parent)]
-        dict2[str(parent)] = []
+        if (str(namesp)) in dict1.keys():
+            dict1[namesp].append(str(parent))
+        else:
+            dict1[namesp]= [str(parent)]
+
 
 
 def get(namesp, arg):
     parent = 0
     for i in dict2.keys():
+
         if i == namesp:
             parent = namesp
             for j in dict2[i]:
